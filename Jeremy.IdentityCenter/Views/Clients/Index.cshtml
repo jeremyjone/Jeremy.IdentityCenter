@@ -1,0 +1,53 @@
+﻿@using Jeremy.IdentityCenter.Business.Models
+@model Jeremy.IdentityCenter.Business.Models.Clients.ClientsViewModel
+@{
+    ViewBag.Title = "客户端列表";
+}
+
+<div class="row">
+    <div class="col-12 text-center mt-1 mb-1">
+        <h2><span class="fa fa-desktop" title="Clients" aria-hidden="true"></span>客户端列表</h2>
+    </div>
+
+    <div class="col-12">
+        <a asp-action="Client" class="btn btn-outline-primary mb-3"><span class="fa fa-plus"></span>添加客户端</a>
+    </div>
+
+    <div class="col-12">
+        @await Html.PartialAsync("Search", new Search() { Action = "Index", Controller = "Clients" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>客户端标识</th>
+                        <th>客户端名称</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var client in Model.Clients)
+                {
+                    <tr>
+                        <td>@client.ClientId</td>
+                        <td>@client.ClientName</td>
+                        <td class="flex-nowrap text-right">
+                            <a class="btn btn-primary" asp-action="Client" asp-route-id="@client.Id">编辑</a>
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@client.Id"><span class="fa fa-times"></span></a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @await Html.PartialAsync("Pagination", new Pagination { Action = "Index", PageSize = Model.PageSize, TotalCount = Model.TotalCount, Search = ViewBag.Search, EnableSearch = true })
+    </div>
+</div>

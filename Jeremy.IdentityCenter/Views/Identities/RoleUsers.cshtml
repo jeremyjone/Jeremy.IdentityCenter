@@ -1,0 +1,82 @@
+﻿@using Jeremy.IdentityCenter.Business.Models
+@model Jeremy.IdentityCenter.Business.Models.Identity.UsersViewModel
+@{ 
+    ViewBag.Title = "角色用户列表";
+}
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="Roles">角色列表</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@ViewBag.Role.Name</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="col-12">
+        <h2>当前角色 - @ViewBag.Role.Name (@ViewBag.Role.Description)</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <form asp-controller="Identities" asp-action="RoleUsers" method="get">
+            <div class="form-row">
+                <div class="col-12 mb-3">
+                    <input name="roleId" value="@ViewBag.Role.Id" type="hidden" />
+                    <input name="search" value="@ViewBag.Search" type="text" placeholder="搜索" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="col-12 mb-3">
+                    <input type="submit" class="btn btn-primary" value="搜索" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>用户 ID</th>
+                        <th>用户名</th>
+                        <th>用户昵称</th>
+                        <th>用户邮箱</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                    <tr>
+                        <td class="align-middle">
+                            <avatar src="@user.Avatar" class="img-thumbnail" size="100" />
+                        </td>
+                        <td class="align-middle">@user.Id</td>
+                        <td class="align-middle">@user.Username</td>
+                        <td class="align-middle">@user.NickName</td>
+                        <td class="align-middle">@user.Email</td>
+                        <td class="align-middle text-right">
+                            <a class="btn btn-danger" asp-action="UserRolesDelete" asp-route-id="@user.Id" asp-route-roleId="@ViewBag.Role.Id"><span class="oi oi-x"></span></a>
+                        </td>
+                    </tr>
+}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @await Html.PartialAsync("Pagination", new Pagination { Action = "RoleUsers", PageSize = Model.PageSize, TotalCount = Model.TotalCount, EnableSearch = true, Search = ViewBag.Search })
+    </div>
+</div>

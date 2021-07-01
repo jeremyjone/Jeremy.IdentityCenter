@@ -1,0 +1,60 @@
+﻿@using Jeremy.IdentityCenter.Business.Models
+@model Jeremy.IdentityCenter.Business.Models.Identity.RolesViewModel
+
+@{
+    ViewBag.Title = "角色列表";
+}
+
+<div class="row">
+    <div class="col-12 mb-3 text-center mt-1">
+        <h2><span class="oi oi-lock-locked" title="Roles" aria-hidden="true"></span>角色列表</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <a asp-action="Role" class="btn btn-outline-primary mb-3 mt-3"><span class="oi oi-plus"></span>创建角色</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @await Html.PartialAsync("Search", new Search { Action = "Roles", Controller = "Identities" })
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>名称</th>
+                    <th>描述</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    @foreach (var role in Model.Roles)
+                    {
+                        <tr>
+                            <td><a class="btn btn-primary" asp-action="RoleUsers" asp-route-id="@role.Id">用户</a></td>
+                            <td>@role.Name</td>
+                            <td>@role.Description</td>
+                            <td class="flex-nowrap text-right">
+                                <a class="btn btn-primary" asp-action="Role" asp-route-id="@role.Id">编辑</a>
+                                <a class="btn btn-danger" asp-action="RoleDelete" asp-route-id="@role.Id"><span class="oi oi-x"></span></a>
+                            </td>
+                        </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @await Html.PartialAsync("Pagination", new Pagination { Action = "Roles", PageSize = Model.PageSize, TotalCount = Model.TotalCount })
+    </div>
+</div>

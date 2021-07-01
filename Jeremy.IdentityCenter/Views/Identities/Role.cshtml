@@ -1,0 +1,72 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Identity.RoleViewModel
+@{ ViewBag.Title = "角色"; }
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="Roles">角色列表</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="col-12">
+        <h2>角色</h2>
+    </div>
+</div>
+
+
+<form id="client-form" asp-controller="Identities" asp-action="Role" Method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    @if (Model.Id != 0)
+    {<!--Button-->
+                        <div class="form-group row">
+                            <div class="col-sm-12">
+                                <a asp-action="RoleClaims" asp-route-id="@Model.Id" class="btn btn-outline-primary"><span class="oi oi-plus"></span>添加角色声明</a>
+                                <a asp-action="RoleUsers" asp-route-id="@Model.Id" class="btn btn-primary">查看用户</a>
+                            </div>
+                        </div>}
+
+    <!--Hidden -->
+    <input type="hidden" asp-for="Id" />
+    <div class="card mt-3">
+        <h5 class="card-header">角色</h5>
+        <div class="card-body">
+
+            <!--Input - text -->
+            <div class="form-group row">
+                <label-name asp-for="Name" class="col-sm-3 col-form-label">
+                </label-name>
+                <div class="col-sm-9">
+                    <input type="text" required class="form-control" asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Input - text -->
+            <div class="form-group row">
+                <label-name asp-for="Description" class="col-sm-3 col-form-label">
+                </label-name>
+                <div class="col-sm-9">
+                    <input type="text" required class="form-control" asp-for="Description">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Button-->
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                </label>
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    @if (Model.Id != 0)
+                    {
+        <a asp-action="RoleDelete" asp-route-id="@Model.Id" class="btn btn-danger">删除角色</a>}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,71 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Identity.UserProviderViewModel
+@{ ViewBag.Title = "移除用户外部提供程序"; }
+
+<form asp-controller="Identities" asp-action="UserProvidersDelete" Method="post">
+    <div class="row">
+
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="Users">用户列表</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="UserInfo" asp-route-id="@Model.UserId">@Model.UserName</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="UserProviders" asp-route-id="@Model.UserId">用户外部提供程序</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">移除用户外部提供程序</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col-md-12">
+            <h3>移除用户外部提供程序</h3>
+
+            <!--Hidden -->
+            <input type="hidden" asp-for="UserId" />
+
+            <div class="card mt-3">
+                <h5 class="card-header">移除用户外部提供程序</h5>
+                <div class="card-body">
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="LoginProvider" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <!--Hidden -->
+                            <input type="hidden" asp-for="LoginProvider" />
+                            <input type="text" disabled="disabled" class="form-control" asp-for="LoginProvider">
+                        </div>
+                    </div>
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="ProviderKey" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <!--Hidden -->
+                            <input type="hidden" asp-for="ProviderKey" />
+                            <input type="text" disabled="disabled" class="form-control" asp-for="ProviderKey">
+                        </div>
+                    </div>
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="ProviderDisplayName" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <input type="text" disabled="disabled" class="form-control" asp-for="ProviderDisplayName">
+                        </div>
+                    </div>
+
+                    <!--Button-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                        </label>
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-danger">移除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

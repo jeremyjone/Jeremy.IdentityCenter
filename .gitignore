@@ -1,0 +1,10 @@
+.vs
+bin
+obj
+LogFiles
+_backup
+
+*.user
+*.Development.json
+compilerconfig.*
+*.jwk

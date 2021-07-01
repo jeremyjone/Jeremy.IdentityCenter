@@ -1,0 +1,141 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Clients.ClientViewModel
+<!--Hidden -->
+<input type="hidden" asp-for="Id" />
+
+<div class="card mt-3">
+    <h5 class="card-header">客户端</h5>
+    <div class="card-body">
+        <!--Checkbox-->
+        <div class="form-group row">
+            <label-name asp-for="Enabled" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="Enabled" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Input - text -->
+        <div class="form-group row">
+            <label-name asp-for="Description" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="Description">
+            </div>
+        </div>
+
+        <!--Select-->
+        <div class="form-group row">
+            <label-name asp-for="ProtocolType" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <select asp-for="ProtocolType" asp-items="@(new SelectList(Model.ProtocolTypes,"Id","Text"))" class="form-control single-select"></select>
+            </div>
+        </div>
+
+        <!--Checkbox-->
+        <div class="form-group row">
+            <label-name asp-for="RequireClientSecret" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="RequireClientSecret" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Button-->
+        <div class="form-group row">
+            <label-name asp-for="ClientSecrets" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <a asp-action="ClientSecrets" asp-route-id="@Model.Id" class="btn btn-primary">管理客户端秘钥</a>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label-name asp-for="RequireRequestObject" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="RequireRequestObject" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Checkbox-->
+        <div class="form-group row">
+            <label-name asp-for="RequirePkce" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="RequirePkce" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Checkbox-->
+        <div class="form-group row">
+            <label-name asp-for="AllowPlainTextPkce" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="AllowPlainTextPkce" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Checkbox-->
+        <div class="form-group row">
+            <label-name asp-for="AllowOfflineAccess" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="AllowOfflineAccess" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Checkbox-->
+        <div class="form-group row">
+            <label-name asp-for="AllowAccessTokensViaBrowser" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="AllowAccessTokensViaBrowser" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Select with tags-->
+        <div class="form-group row">
+            <label-name asp-for="RedirectUris" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <picker id="RedirectUrisItems" multiple-select="true" min-search-text="2" selected-items="@Model.RedirectUris">
+                </picker>
+            </div>
+        </div>
+
+        <!--Select with tags-->
+        <div class="form-group row">
+            <label-name asp-for="AllowedScopes" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <picker id="AllowedScopesItems" multiple-select="true" min-search-text="2"
+                        selected-items="@Model.AllowedScopes" url="@Url.Action("Scopes","Clients")?scope">
+                </picker>
+            </div>
+        </div>
+
+        <!--Select with tags-->
+        <div class="form-group row">
+            <label-name asp-for="AllowedGrantTypes" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <picker id="AllowedGrantTypesItems" multiple-select="true" min-search-text="2"
+                        url="@Url.Action("GrantTypes","Clients")?grant" selected-items="@Model.AllowedGrantTypes">
+                </picker>
+            </div>
+        </div>
+
+
+
+
+        <!--Button-->
+        <div class="form-group row">
+            <label-name asp-for="Properties" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <a asp-action="ClientProperties" asp-route-id="@Model.Id" class="btn btn-primary">管理客户端属性</a>
+            </div>
+        </div>
+    </div>
+</div>

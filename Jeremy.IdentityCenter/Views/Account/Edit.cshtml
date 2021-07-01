@@ -1,0 +1,27 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Account.EditViewModel
+
+<div class="row">
+    <div class="col-md-6">
+        <partial name="_ValidationSummary" />
+
+        <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+            <h6>修改用户信息</h6>
+
+            <hr />
+
+            <div class="form-group">
+                <label asp-for="NickName"></label>
+                <input asp-for="NickName" class="form-control" />
+                <span asp-validation-for="NickName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">确认</button>
+        </form>
+    </div>
+</div>

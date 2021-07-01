@@ -1,0 +1,171 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Identity.UserViewModel
+@{ ViewBag.Title = "用户信息"; }
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="Users">用户列表</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Username</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="col-12">
+        @if (Model.Id == 0)
+        {
+<h2>创建用户</h2> }
+else
+{
+<h2>用户信息 - @Model.Username</h2>}
+    </div>
+</div>
+
+<form id="client-form" asp-controller="Identities" asp-action="UserInfo" Method="post">
+
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    @if (Model.Id != 0)
+    {<!--Button-->
+                        <div class="form-group row">
+                            <div class="col-md-12 col-m-b-10  col-m-t-10">
+                                <a asp-action="UserClaims" asp-route-id="@Model.Id" class="btn btn-outline-primary">管理用户声明</a>
+                                <a asp-action="UserRoles" asp-route-id="@Model.Id" class="btn btn-outline-primary">管理用户角色</a>
+                                <a asp-action="UserProviders" asp-route-id="@Model.Id" class="btn btn-outline-primary">管理用户外部登录提供程序</a>
+                                @*<a asp-action="AuditLog" asp-controller="Log" asp-route-subjectIdentifier="@Model.Id" class="btn btn-primary">Audit Log</a>*@
+                                <a asp-action="ChangePassword" asp-route-id="@Model.Id" class="btn btn-dark">修改密码</a>
+                            </div>
+                        </div>}
+
+    <!--Hidden -->
+    <input type="hidden" asp-for="Id" />
+
+    <div class="card mt-3">
+        <h5 class="card-header">用户信息</h5>
+        <div class="card-body">
+
+            <div class="row">
+                <div class="col-lg-2 mb-3">
+                    <avatar user-id="@Model.Id" class="img-thumbnail" size="150" />
+                </div>
+                <div class="col-sm-10">
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="Username" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <input type="text" required class="form-control" asp-for="Username">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="Email" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <input type="email" required class="form-control" asp-for="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Checkbox-->
+                    <div class="form-group row">
+                        <label-name asp-for="EmailConfirmed" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <toggle-button>
+                                <input asp-for="EmailConfirmed" type="checkbox">
+                            </toggle-button>
+                        </div>
+                    </div>
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="PhoneNumber" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="PhoneNumber">
+                        </div>
+                    </div>
+
+                    <!--Checkbox-->
+                    <div class="form-group row">
+                        <label-name asp-for="PhoneNumberConfirmed" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <toggle-button>
+                                <input asp-for="PhoneNumberConfirmed" type="checkbox">
+                            </toggle-button>
+                        </div>
+                    </div>
+
+                    <!--Checkbox-->
+                    <div class="form-group row">
+                        <label-name asp-for="LockoutEnabled" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <toggle-button>
+                                <input asp-for="LockoutEnabled" type="checkbox">
+                            </toggle-button>
+                        </div>
+                    </div>
+
+                    <!--Checkbox-->
+                    <div class="form-group row">
+                        <label-name asp-for="TwoFactorEnabled" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <toggle-button>
+                                <input asp-for="TwoFactorEnabled" type="checkbox">
+                            </toggle-button>
+                        </div>
+                    </div>
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="AccessFailedCount" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" asp-for="AccessFailedCount">
+                        </div>
+                    </div>
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="LockoutEnd" class="col-sm-3 col-form-label">
+                        </label-name>
+                        <div class="col-sm-9">
+                            <div class="input-group date" id="logoutend-picker" data-target-input="nearest">
+                                <input asp-for="LockoutEnd" type="text" class="form-control">
+                                <div class="input-group-append" data-target="#logoutend-picker" data-toggle="datetimepicker">
+                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Button-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                        </label>
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary">保存</button>
+                            @if (Model.Id != 0)
+                            {
+                <a asp-action="UserDelete" asp-route-id="@Model.Id" class="btn btn-danger">删除</a>}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section scripts
+    {
+    <script type="text/javascript">
+        $(function () {
+            $('#logoutend-picker').datetimepicker();
+        });</script>
+}

@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jeremy.IdentityCenter.Business.Common\Jeremy.IdentityCenter.Business.Common.csproj" />
+    <ProjectReference Include="..\Jeremy.IdentityCenter.Database.Common\Jeremy.IdentityCenter.Database.Common.csproj" />
+    <ProjectReference Include="..\Jeremy.IdentityCenter.Database\Jeremy.IdentityCenter.Database.csproj" />
+  </ItemGroup>
+
+</Project>

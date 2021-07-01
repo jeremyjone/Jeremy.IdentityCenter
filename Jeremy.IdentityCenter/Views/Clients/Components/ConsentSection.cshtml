@@ -1,0 +1,42 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Clients.ClientViewModel
+
+<div class="card mt-3">
+    <h5 class="card-header">客户端</h5>
+    <div class="card-body">
+        <!--Checkbox-->
+        <div class="form-group row">
+            <label-name asp-for="RequireConsent" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="RequireConsent" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Checkbox-->
+        <div class="form-group row">
+            <label-name asp-for="AllowRememberConsent" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <toggle-button>
+                    <input asp-for="AllowRememberConsent" type="checkbox">
+                </toggle-button>
+            </div>
+        </div>
+
+        <!--Input - text -->
+        <div class="form-group row">
+            <label-name asp-for="ClientUri" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="ClientUri">
+            </div>
+        </div>
+
+        <!--Input - text -->
+        <div class="form-group row">
+            <label-name asp-for="LogoUri" class="col-sm-3 col-form-label"></label-name>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" asp-for="LogoUri">
+            </div>
+        </div>
+    </div>
+</div>

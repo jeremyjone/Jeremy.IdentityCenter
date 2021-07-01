@@ -1,0 +1,100 @@
+﻿@using Jeremy.IdentityCenter.Business.Models
+@model Jeremy.IdentityCenter.Business.Models.Clients.ClientPropertiesViewModel
+@{ ViewBag.Title = "客户端属性"; }
+
+<form asp-controller="Clients" asp-action="ClientProperties" Method="post">
+    <div class="row">
+
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Clients" asp-action="Index">客户端列表</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Clients" asp-action="Client" asp-route-id="@Model.ClientId">@Model.ClientName</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">客户端属性</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col-md-12">
+
+            <h3>客户端属性</h3>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <!--Hidden -->
+            <input type="hidden" asp-for="ClientId" />
+
+            <!--Hidden -->
+            <input type="hidden" asp-for="ClientName" />
+
+            <div class="card mt-3">
+                <h5 class="card-header">新建客户端属性</h5>
+                <div class="card-body">
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="Key" class="col-sm-3 col-form-label"></label-name>
+                        <div class="col-sm-9">
+                            <input type="text" required class="form-control" asp-for="Key">
+                            <span asp-validation-for="Key" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="Value" class="col-sm-3 col-form-label"></label-name>
+                        <div class="col-sm-9">
+                            <input type="text" required class="form-control" asp-for="Value">
+                            <span asp-validation-for="Value" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <!--Button-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                        </label>
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-primary">添加客户端属性</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card mt-3">
+            <h5 class="card-header">客户端属性</h5>
+            <div class="card-body">
+                <div class="row table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>键</th>
+                                <th>值</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var clientProperty in Model.ClientProperties)
+                            {
+                <tr>
+                    <td>@clientProperty.Key</td>
+                    <td>@clientProperty.Value</td>
+                    <td class="text-right"><a asp-action="ClientPropertyDelete" asp-route-id="@clientProperty.Id" class="btn btn-danger">删除</a></td>
+                </tr>}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        @await Html.PartialAsync("../Shared/Pagination", new Pagination { Action = "ClientProperties", PageSize = Model.PageSize, TotalCount = Model.TotalCount })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

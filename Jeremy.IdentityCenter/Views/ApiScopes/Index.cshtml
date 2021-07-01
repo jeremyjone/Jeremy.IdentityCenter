@@ -1,0 +1,63 @@
+﻿@using Jeremy.IdentityCenter.Business.Models
+@model Jeremy.IdentityCenter.Business.Models.ApiScopes.ApiScopesViewModel
+@{ ViewBag.Title = "Api 作用域"; }
+
+<div class="row">
+    <div class="col-12 text-center mt-1 mb-1">
+        <h2><span class="oi oi-wrench" title="Api Scopes" aria-hidden="true"></span>Api 作用域</h2>
+    </div>
+
+    <div class="col-12">
+        <a asp-action="Scope" class="btn btn-outline-primary mb-3"><span class="oi oi-plus"></span>新建 Api 作用域</a>
+    </div>
+
+    <div class="col-12">
+        @await Html.PartialAsync("Search", new Search { Action = "Index", Controller = "ApiScopes" })
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="row table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>作用域名称</th>
+                        <th>显示名称</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var scope in Model.Scopes)
+                    {
+        <tr>
+            <td>@scope.Name</td>
+            <td>@scope.DisplayName</td>
+            <td class="flex-nowrap text-right">
+                <a asp-action="Scope" asp-route-id="@scope.Id" class="btn btn-primary">编辑</a>
+                <a asp-action="Delete" asp-route-id="@scope.Id" class="btn btn-danger"><span class="oi oi-x"></span></a>
+            </td>
+        </tr>}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                @await Html.PartialAsync("Pagination", new Pagination { Action = "Index", PageSize = Model.PageSize, TotalCount = Model.TotalCount, EnableSearch = true, Search = @ViewBag.Search })
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts
+	{
+    <script>
+        $(function () {
+            //Disable enter for this form
+            FormMvc.disableEnter($('#api-scope-form'));
+        });</script>
+}

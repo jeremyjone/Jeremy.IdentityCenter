@@ -1,0 +1,56 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Clients.ClientViewModel
+@{
+    ViewBag.Title = "删除客户端";
+}
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Clients" asp-action="Index">客户端列表</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Clients" asp-action="Client" asp-route-id="@Model.Id">@Model.ClientName</a></li>
+                <li class="breadcrumb-item active" aria-current="page">删除客户端</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<form id="client-form" asp-controller="Clients" asp-action="Delete" Method="post">
+
+    <!--Hidden -->
+    <input type="hidden" asp-for="Id" />
+
+    <h2>删除客户端</h2>
+
+    <div class="card mt-3">
+        <h5 class="card-header">删除客户端</h5>
+        <div class="card-body">
+            <!--Input - text -->
+            <div class="form-group row">
+                <label-name asp-for="ClientId" class="col-sm-3 col-form-label">
+                </label-name>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" asp-for="ClientId" disabled="disabled" />
+                </div>
+            </div>
+
+            <!--Input - text -->
+            <div class="form-group row">
+                <label-name asp-for="ClientName" class="col-sm-3 col-form-label">
+                </label-name>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" disabled="disabled" asp-for="ClientName" />
+                </div>
+            </div>
+
+            <!--Button-->
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                </label>
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-danger">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

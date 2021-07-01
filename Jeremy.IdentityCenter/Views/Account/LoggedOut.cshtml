@@ -1,0 +1,31 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Account.LoggedOutViewModel
+@{
+    // set this so the layout rendering sees an anonymous user
+    ViewData["signed-out"] = true;
+    Layout = "_BlankLayout";
+}
+
+<div class="logged-out-page text-center p-5">
+    <h1>您已登出</h1>
+
+    @if (Model.PostLogoutRedirectUri != null)
+    {
+        <div>
+            如果没有调转，您可以点击 <a class="PostLogoutRedirectUri" href="@Model.PostLogoutRedirectUri">这里</a> 返回
+            <strong>@Model.ClientName</strong> 程序。
+        </div>
+    }
+
+    @if (Model.SignOutIframeUrl != null)
+    {
+        <iframe width="0" height="0" class="signout" src="@Model.SignOutIframeUrl"></iframe>
+    }
+</div>
+
+@section scripts
+{
+    @if (Model.AutomaticRedirectAfterSignOut)
+    {
+        <script src="~/js/signout-redirect.js"></script>
+    }
+}

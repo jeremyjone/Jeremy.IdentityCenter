@@ -1,0 +1,23 @@
+﻿@model string
+
+<div class="page-device-code">
+    <div class="lead">
+        <h1>用户编码</h1>
+        <p>请输入您的设备上显示的编码。</p>
+    </div>
+
+    <partial name="_ValidationSummary" />
+
+    <div class="row">
+        <div class="col-sm-6">
+            <form asp-action="UserCodeCapture">
+                <div class="form-group">
+                    <label for="userCode">用户编码:</label>
+                    <input class="form-control" for="userCode" name="userCode" autofocus />
+                </div>
+
+                <button class="btn btn-primary" name="button">提交</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+@model Jeremy.IdentityCenter.Business.Models.Account.LogoutViewModel
+
+<div class="logout-page">
+    <div class="lead">
+        <h1>注销账户</h1>
+        <p>确认注销？</p>
+    </div>
+
+    <form asp-action="Logout">
+        <input type="hidden" name="logoutId" value="@Model.LogoutId"  />
+        <div class="form-group">
+            <button class="btn btn-primary">确认</button>
+        </div>
+    </form>
+</div>

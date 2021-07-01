@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "注册激活成功页面";
+    Layout = "_blankLayout";
+}
+
+<div class="row">
+    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+    <div class="col-lg-6">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">激活成功</h1>
+            </div>
+            <partial name="_ValidationSummary" />
+
+            <label>激活成功，点击</label> <a asp-controller="Account" asp-action="Login">这里</a> <label>登录您的账户。</label>
+        </div>
+    </div>
+</div>

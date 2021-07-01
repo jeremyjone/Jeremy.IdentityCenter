@@ -1,0 +1,15 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Search
+
+<form asp-controller="@Model.Controller" asp-action="@Model.Action" method="get">
+    <div class="form-row">
+        <div class="col-12 mb-3">
+            <input name="search" value="@ViewBag.Search" type="text" placeholder="搜索" class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="col-12 mb-3">
+            <input type="submit" class="btn btn-primary" value="搜索" />
+        </div>
+    </div>
+</form>

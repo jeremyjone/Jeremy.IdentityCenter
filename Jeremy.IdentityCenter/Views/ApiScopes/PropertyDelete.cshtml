@@ -1,0 +1,56 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.ApiScopes.ApiScopePropertiesViewModel
+@{ ViewBag.Title = "删除 Api 作用域"; }
+
+<form asp-controller="ApiScopes" asp-action="PropertyDelete" Method="post">
+    <div class="row">
+
+        <div class="col-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="ApiScopes" asp-action="Index">Api 作用域列表</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="ApiScopes" asp-action="Scope" asp-route-id="@Model.ApiScopeId">@Model.ApiScopeName</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="ApiScopes" asp-action="Properties" asp-route-id="@Model.ApiScopeId">属性页</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">删除身份资源属性</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="col-md-12">
+            <h3>删除 Api 作用域</h3>
+
+            <!--Hidden -->
+            <input type="hidden" asp-for="ApiScopeId" />
+            <input type="hidden" asp-for="ApiScopePropertyId" />
+
+            <div class="card mt-3">
+                <h5 class="card-header">删除 Api 作用域</h5>
+                <div class="card-body">
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="Key" class="col-sm-3 col-form-label"></label-name>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" disabled="disabled" asp-for="Key">
+                        </div>
+                    </div>
+
+                    <!--Input - text -->
+                    <div class="form-group row">
+                        <label-name asp-for="Value" class="col-sm-3 col-form-label"></label-name>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" disabled="disabled" asp-for="Value">
+                        </div>
+                    </div>
+
+                    <!--Button-->
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">
+                        </label>
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-danger">删除</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

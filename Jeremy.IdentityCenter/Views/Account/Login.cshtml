@@ -1,0 +1,91 @@
+﻿@{
+    Layout = "_BlankLayout";
+}
+@model Jeremy.IdentityCenter.Business.Models.Account.LoginViewModel
+
+<div class="row">
+    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+    <div class="col-lg-6">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">欢迎登录 认证中心</h1>
+            </div>
+
+            <partial name="_ValidationSummary" />
+
+
+            @if (Model.EnableLocalLogin)
+            {
+                <form asp-route="Login" class="user">
+                    <input type="hidden" asp-for="ReturnUrl" />
+
+                    <div class="form-group">
+                        <label asp-for="Username"></label>
+                        <input class="form-control form-control-user" placeholder="请输入用户名..." asp-for="Username" aria-describedby="usernameHelp" autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input type="password" class="form-control form-control-user" placeholder="请输入密码..." asp-for="Password" autocomplete="off">
+                    </div>
+                    @if (Model.AllowRememberLogin)
+                    {
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox small">
+                                <input type="checkbox" class="custom-control-input" asp-for="RememberLogin">
+                                <label class="custom-control-label" asp-for="RememberLogin">
+                                    记住我
+                                </label>
+                            </div>
+                        </div>
+                    }
+                    <div class="px-2">
+                        <button class="btn btn-primary btn-user col-5" name="button" value="login">登录</button>
+                        <button class="btn btn-secondary btn-user col-5 float-right" name="button" value="cancel">取消</button>
+                    </div>
+                </form>
+            }
+
+            <hr />
+
+            @if (Model.VisibleExternalProviders.Any())
+            {
+                @foreach (var provider in Model.VisibleExternalProviders)
+                {
+                    <a class="btn btn-secondary btn-user btn-circle btn-@provider.DisplayName.ToLower()"
+                       data-toggle="tooltip"
+                       data-placement="top"
+                       title="@provider.DisplayName"
+                       asp-controller="External"
+                       asp-action="Challenge"
+                       asp-route-scheme="@provider.AuthenticationScheme"
+                       asp-route-returnUrl="@Model.ReturnUrl">
+                        <i class="fab fa-@provider.DisplayName.ToLower() fa-fw"></i>
+                    </a>
+
+                }
+            }
+
+            @if (!Model.EnableLocalLogin && !Model.VisibleExternalProviders.Any())
+            {
+                <div class="alert alert-warning">
+                    <strong>Invalid login request</strong>
+                    There are no login schemes configured for this request.
+                </div>
+            }
+
+
+            <hr>
+            <div class="text-center">
+                <a class="small" asp-controller="Account" asp-action="ForgotPassword" data-toggle="tooltip" data-placement="top" title="重置密码">
+                    忘记密码?
+                </a>
+
+                <span class="mx-5">|</span>
+
+                <a class="small" asp-controller="Account" asp-action="Register" data-toggle="tooltip" data-placement="top" title="注册">
+                    注册
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

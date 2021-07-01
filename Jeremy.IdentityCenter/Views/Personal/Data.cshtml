@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "个人数据";
+}
+
+<h4>个人数据</h4>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="alert alert-info" role="alert">
+            您的帐户包含您提供给我们的个人数据。 此页面允许您下载或删除该数据。
+        </div>
+        <form asp-action="DownloadData" method="post" class="form-group">
+            <button class="btn btn-primary" type="submit">下载</button>
+        </form>
+        <div class="alert alert-danger" role="alert">
+            删除此数据会永久删除您的帐户，并无法恢复。
+        </div>
+        <div>
+            <a asp-action="DeleteAccount" class="btn btn-danger">删除</a>
+        </div>
+    </div>
+</div>

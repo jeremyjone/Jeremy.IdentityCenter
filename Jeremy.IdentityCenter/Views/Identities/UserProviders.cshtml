@@ -1,0 +1,45 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Identity.UserProvidersViewModel
+@{
+    ViewBag.Title = "用户外部提供程序";
+}
+
+<div class="row">
+	
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="Users">用户列表</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="UserInfo" asp-route-id="@Model.UserId">@Model.UserName</a></li>
+                <li class="breadcrumb-item active" aria-current="page">用户外部提供程序</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="col-md-12">
+        <h3>用户外部提供程序列表</h3>
+		
+        <div class="row table-responsive">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>登录提供程序</th>
+                    <th>提供程序显示名称</th>
+                    <th>提供程序秘钥</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var provider in Model.Providers)
+                {
+                    <tr>
+                        <td>@provider.LoginProvider</td>
+                        <td>@provider.ProviderDisplayName</td>
+                        <td>@provider.ProviderKey</td>
+                        <td class="text-right"><a asp-action="UserProvidersDelete" asp-route-providerKey="@provider.ProviderKey" asp-route-id="@Model.UserId" class="btn btn-danger">移除</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

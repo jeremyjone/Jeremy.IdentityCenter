@@ -1,0 +1,76 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Account.RegisterViewModel
+@{
+    ViewData["Title"] = "注册页面";
+    Layout = "_blankLayout";
+}
+
+<div class="row">
+    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+    <div class="col-lg-6">
+        <div class="p-5">
+            <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">注 册</h1>
+            </div>
+            <partial name="_ValidationSummary" />
+
+            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control form-control-user" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="NickName"></label>
+                    <input asp-for="NickName" class="form-control form-control-user" />
+                    <span asp-validation-for="NickName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control form-control-user" type="email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control form-control-user" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ConfirmPassword"></label>
+                    <input asp-for="ConfirmPassword" class="form-control form-control-user" type="password" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+
+                <!--Input - text -->
+                <div class="form-group">
+                    <label asp-for="BirthDate"></label>
+                    <div class="input-group date" id="birth-picker" data-target-input="nearest">
+                        <input asp-for="BirthDate" type="text" class="form-control form-control-user">
+                        <div class="input-group-append" data-target="#birth-picker" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Select-->
+                <div class="form-group">
+                    <label asp-for="Sex"></label>
+                    <select asp-for="Sex" asp-items="@(new SelectList(Model.SexList, "Id", "Text"))" class="form-control single-select"></select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">注册</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#birth-picker').datetimepicker();
+        });</script>
+}

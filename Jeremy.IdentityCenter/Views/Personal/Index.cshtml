@@ -1,0 +1,66 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Personal.UserInfoViewModel
+@{ ViewData["Title"] = "个人资料"; }
+
+<h4>个人资料</h4>
+
+@await Html.PartialAsync("_ValidationSummary")
+
+@await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
+
+<div class="form-group row">
+    <div class="col-md-12 col-m-b-10  col-m-t-10">
+        <a asp-action="Data" class="btn btn-outline-primary">个人数据</a>
+        <a asp-action="ChangePassword" class="btn btn-dark">修改密码</a>
+        <a asp-action="DeleteAccount" class="btn btn-danger">删除账户</a>
+    </div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-lg-2">
+        <avatar src="@Model.Avatar" class="img-thumbnail" size="150" />
+    </div>
+    <div class="col-sm-10">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="Username"></label>
+                <input asp-for="Username" class="form-control" disabled />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input type="hidden" asp-for="EmailConfirmed" />
+                @if (Model.EmailConfirmed)
+                {
+    <div class="input-group">
+        <input asp-for="Email" class="form-control" />
+    </div> }
+                else
+                {
+    <input asp-for="Email" class="form-control" />
+                    <button asp-action="SendVerificationEmail" class="btn btn-link">发送验证邮件</button>}
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Website"></label>
+                <input asp-for="Website" class="form-control" />
+                <span asp-validation-for="Website" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Profile"></label>
+                <input asp-for="Profile" class="form-control" />
+                <span asp-validation-for="Profile" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">保存</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Personal.DeleteAccountViewModel
+@{
+    ViewData["Title"] = "删除账户";
+}
+
+<h4>删除账户</h4>
+
+<div class="alert alert-danger" role="alert">
+    <span class="fa fa-exclamation-triangle"></span>
+    <strong>删除账户</strong>
+</div>
+
+<div>
+    <form id="delete-user" method="post" class="form-group">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @if (Model.RequirePassword)
+        {
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+        }
+        @*<button class="btn btn-danger" type="submit"></button>*@
+        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#deleteUserModal">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+            删除账户
+        </a>
+
+
+        <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="DeleteUserModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="DeleteUserModalLabel">确认删除账户</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">再次确认您确定是否需要删除该账户？点击 "确认删除" 后无法恢复。</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                        <button type="submit" class="btn btn-danger">确认删除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+

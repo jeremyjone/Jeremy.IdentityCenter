@@ -1,0 +1,94 @@
+﻿@using IdentityServer4.Extensions
+
+@{
+    string name = null;
+    string id = null;
+    if (!true.Equals(ViewData["signed-out"]))
+    {
+        name = Context.User?.GetDisplayName();
+        id = Context.User?.GetSubjectId();
+    }
+}
+
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 shadow">
+    
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <ul class="navbar-nav ml-auto">
+        @if (!string.IsNullOrWhiteSpace(name))
+        {
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="navUserDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@name</span>
+                    <avatar user-id="@id" class="img-profile rounded-circle" />
+                </a>
+                <!-- Dropdown - User Information -->
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                     aria-labelledby="navUserDropdown">
+                    <a class="dropdown-item" asp-controller="Diagnostics" asp-action="Index">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                        声明
+                    </a>
+                    <a class="dropdown-item" asp-controller="Grants" asp-action="Index">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                        授权
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-controller="Personal" asp-action="Index">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        个人资料
+                    </a>
+                    <a class="dropdown-item" asp-controller="Personal" asp-action="Data">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        个人数据
+                    </a>
+                    @*<a class="dropdown-item" asp-controller="Personal" asp-action="TwoFactor">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        双因素身份验证
+                    </a>*@
+                    <a class="dropdown-item" asp-controller="Personal" asp-action="ChangePassword">
+                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                        修改密码
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                        注销
+                    </a>
+                </div>
+            </li>
+        }
+    </ul>
+</nav>
+
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="LogoutModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="LogoutModalLabel">确认注销？</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">如果您准备结束当前的会话，请点击“注销”按钮。</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">取消</button>
+                <form asp-action="Logout" asp-controller="Account">
+                    <input type="hidden" name="logoutId" value="@id" />
+                    <input type="hidden" name="PostLogoutRedirectUri" value="/home" />
+                    <div class="form-group d-table-cell">
+                        <button class="btn btn-primary">注销</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

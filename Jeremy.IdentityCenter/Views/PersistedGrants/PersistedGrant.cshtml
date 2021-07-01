@@ -1,0 +1,91 @@
+﻿@using Jeremy.IdentityCenter.Business.Models
+@model Jeremy.IdentityCenter.Business.Models.PersistedGrants.PersistedGrantsViewModel
+@{ 
+    ViewBag.Title = "持久授权";
+}
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="PersistedGrants" asp-action="Index">持久授权列表</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.SubjectId</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="col-12">
+        <h2>持久授权</h2>
+    </div>
+</div>
+
+<form id="client-form" asp-controller="PersistedGrants" asp-action="DeleteGrants" Method="post">
+
+    <a href="#" class="btn btn-danger mb-3" data-toggle="modal" data-target="#deletePersistedGrantsModal">删除所有授权</a>
+
+    <!--Hidden -->
+    <input type="hidden" asp-for="SubjectId" />
+
+    <div class="row table-responsive">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>主体标识</th>
+                        <th>类型</th>
+                        <th>到期时间</th>
+                        <th>数据</th>
+                        <th>客户端</th>
+                        <th>描述</th>
+                        <th>SessionId</th>
+                        <th>创建时间</th>
+                        <th>耗时时间</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var persistedGrant in Model.PersistedGrants)
+                    {
+        <tr>
+            <td>@persistedGrant.SubjectId</td>
+            <td>@persistedGrant.Type</td>
+            <td>@persistedGrant.Expiration</td>
+            <td>@persistedGrant.Data</td>
+            <td>@persistedGrant.ClientId</td>
+            <td>@persistedGrant.Description</td>
+            <td>@persistedGrant.SessionId</td>
+            <td>@persistedGrant.ConsumedTime</td>
+            <td>@persistedGrant.CreationTime</td>
+            <td class="text-right"><a class="btn btn-danger" asp-action="Delete" asp-route-id="@persistedGrant.Key"><span class="oi oi-x"></span></a></td>
+        </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            @await Html.PartialAsync("Pagination", new Pagination { Action = "PersistedGrant", PageSize = Model.PageSize, TotalCount = Model.TotalCount })
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deletePersistedGrantsModal" tabindex="-1" role="dialog" aria-labelledby="deletePersistedGrantsModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="deletePersistedGrantsModalLabel">警告</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    正在删除全部的持久授权，继续请按 "确认"。
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger">确认</button>
+                    <button type="button" class="btn btn-outline-primary" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+
+    <title>@ViewData["Title"] - 认证中心</title>
+
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+
+    <link rel="stylesheet" href="~/css/bundle.min.css" />
+    <link rel="stylesheet" href="~/css/web.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+<body id="page-top">
+    <div id="wrapper">
+        <partial name="_SideBar" />
+
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <partial name="_Nav" />
+
+                <div class="mx-lg-5">
+                    @RenderBody()
+                </div>
+            </div>
+
+
+
+            <footer class="sticky-footer bg-gray-200">
+                <div class="container my-auto">
+                    <div class="copyright text-center">
+                        <span>Copyright &copy; <a href="https://www.xiaopangying.com" target="_blank" class="btn-link">XiaoPangYing.COM</a> @DateTime.Now.Year</span>
+                    </div>
+                    <div class="copyright text-center mt-1">
+                        <span>界面源自 <a href="https://startbootstrap.com/theme/sb-admin-2" target="_blank" class="btn-link">SB Admin-2</a></span>
+                        <span class="mx-2">|</span>
+                        <span>内容设计参考 <a href="https://github.com/skoruba/IdentityServer4.Admin" target="_blank" class="btn-link">Skoruba IdentityServer4 Admin</a></span>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/jquery.easing.min.js"></script>
+    <script src="~/js/bundle.min.js"></script>
+    <script src="~/js/sb-admin-2.min.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

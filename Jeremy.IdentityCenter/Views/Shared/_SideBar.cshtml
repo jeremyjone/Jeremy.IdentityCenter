@@ -1,0 +1,116 @@
+﻿@{
+    var isAdmin = Context.User?.IsInRole("admin") ?? false;
+}
+
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" asp-action="Index" asp-controller="Home">
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-server"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">认证中心</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" asp-action="Index" asp-controller="Home">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>主页</span>
+        </a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    @if (isAdmin)
+    {
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            后台管理
+        </div>
+
+        <!-- Nav Item - Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseManageResource"
+               aria-expanded="true" aria-controls="collapseManageResource" role="button">
+                <i class="fas fa-fw fa-cog"></i>
+                <span>资源</span>
+            </a>
+            <div id="collapseManageResource" class="collapse" aria-labelledby="headingManageResource" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" asp-controller="IdentityResource" asp-action="Index">身份资源</a>
+                    <a class="collapse-item" asp-controller="ApiResources" asp-action="Index">Api资源</a>
+                    <a class="collapse-item" asp-controller="ApiScopes" asp-action="Index">Api作用域</a>
+                    <a class="collapse-item" asp-controller="PersistedGrants" asp-action="Index">持久授权</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Collapse Menu -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseIdentity"
+               aria-expanded="true" aria-controls="collapseIdentity">
+                <i class="fas fa-fw fa-wrench"></i>
+                <span>身份中心</span>
+            </a>
+            <div id="collapseIdentity" class="collapse" aria-labelledby="headingIdentity"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" asp-controller="Identities" asp-action="Users">用户</a>
+                    <a class="collapse-item" asp-controller="Identities" asp-action="Roles">角色</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseClients"
+               aria-expanded="true" aria-controls="collapseClients">
+                <i class="fas fa-fw fa-table"></i>
+                <span>客户端</span>
+            </a>
+            <div id="collapseClients" class="collapse" aria-labelledby="headingClients"
+                 data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <a class="collapse-item" asp-controller="Clients" asp-action="Index">客户端</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+    }
+
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        个人
+    </div>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePersonal"
+           aria-expanded="true" aria-controls="collapsePersonal">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>个人</span>
+        </a>
+        <div id="collapsePersonal" class="collapse" aria-labelledby="headingPersonal" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" asp-controller="Personal" asp-action="Index">个人资料</a>
+                <a class="collapse-item" asp-controller="Personal" asp-action="ChangePassword">修改密码</a>
+                <a class="collapse-item" asp-controller="Grants" asp-action="Index">授权列表</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider d-none d-md-block">
+
+    <!-- Sidebar Toggler (Sidebar) -->
+    <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+    </div>
+</ul>

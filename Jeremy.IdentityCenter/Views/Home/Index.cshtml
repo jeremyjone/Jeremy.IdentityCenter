@@ -1,0 +1,65 @@
+﻿<div class="welcome-page">
+    <h1>
+        <img src="~/icon.jpg" alt="" />
+        欢迎来到认证中心
+    </h1>
+
+    <ul class="card-deck text-center">
+        <li class="card mb-3 box-shadow">
+            <div class="card-header">说明</div>
+            <div class="card-body text-center">
+                <p class="text-danger">警告：该认证中心仅供学习使用，请勿用于生产模式。</p>
+                <p>该认证中心基本完整，可以管控所有资源、客户端、用户等。学习内容可以到
+                    <a href="https://github.com/jeremyjone/ids">https://github.com/jeremyjone/ids</a>
+                    下载源码并在本地运行。具体方案可以参考 
+                    <a href="#">说明文档</a>
+                    。
+                </p>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="card-deck text-center">
+        <li class="card mb-3 box-shadow">
+            <div class="card-header">发现文档</div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <i class="fas fa-book-open"></i>
+                </h1>
+                <a href="~/.well-known/openid-configuration" class="btn btn-block btn-outline-primary">发现文档</a>
+            </div>
+        </li>
+    </ul>
+
+    <ul class="card-deck text-center">
+        <li class="card mb-3">
+            <div class="card-header">个人资料</div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <i class="fas fa-user"></i>
+                </h1>
+                <a asp-controller="Personal" asp-action="Index" class="btn btn-block btn-primary">个人资料</a>
+            </div>
+        </li>
+
+        <li class="card mb-3">
+            <div class="card-header">授权</div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <i class="fas fa-credit-card"></i>
+                </h1>
+                <a asp-controller="Grants" asp-action="Index" class="btn btn-block btn-primary">授权</a>
+            </div>
+        </li>
+
+        <li class="card mb-3">
+            <div class="card-header">声明</div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <i class="fas fa-envelope"></i>
+                </h1>
+                <a asp-controller="Diagnostics" asp-action="Index" class="btn btn-block btn-primary">声明</a>
+            </div>
+        </li>
+    </ul>
+</div>

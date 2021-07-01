@@ -1,0 +1,64 @@
+﻿@using Jeremy.IdentityCenter.Business.Models
+@model Jeremy.IdentityCenter.Business.Models.Identity.UsersViewModel
+@{ ViewBag.Title = "用户列表"; }
+
+<div class="row">
+    <div class="col-12 mb-3 text-center mt-1">
+        <h2><span class="oi oi-person" title="Users" aria-hidden="true"></span>用户列表</h2>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <a asp-action="UserInfo" class="btn btn-outline-primary mb-3 mt-3"><span class="oi oi-plus"></span>添加用户</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @await Html.PartialAsync("Search", new Search() { Action = "Users", Controller = "Identities" })
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>用户 ID</th>
+                        <th>用户名</th>
+                        <th>用户昵称</th>
+                        <th>用户邮箱</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td class="align-middle">
+                                <avatar src="@user.Avatar" class="img-thumbnail" size="100" />
+                            </td>
+                            <td class="align-middle">@user.Id</td>
+                            <td class="align-middle">@user.Username</td>
+                            <td class="align-middle">@user.NickName</td>
+                            <td class="align-middle">@user.Email</td>
+                            <td class="flex-nowrap align-middle text-right">
+                                <a class="btn btn-primary" asp-action="UserInfo" asp-route-id="@user.Id">编辑</a>
+                                <a class="btn btn-danger" asp-action="UserDelete" asp-route-id="@user.Id"><span class="oi oi-x"></span></a>
+                            </td>
+                        </tr>}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        @await Html.PartialAsync("Pagination", new Pagination { Action = "Users", PageSize = Model.PageSize, TotalCount = Model.TotalCount, EnableSearch = true, Search = ViewBag.Search })
+    </div>
+</div>

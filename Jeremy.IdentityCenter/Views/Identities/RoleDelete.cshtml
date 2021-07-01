@@ -1,0 +1,61 @@
+﻿@model Jeremy.IdentityCenter.Business.Models.Identity.RoleViewModel
+@{
+    ViewBag.Title = "删除角色";
+}
+
+<div class="row">
+    <div class="col-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="Roles">角色列表</a></li>
+                <li class="breadcrumb-item"><a asp-controller="Identities" asp-action="Role">@Model.Name</a></li>
+                <li class="breadcrumb-item active" aria-current="page">删除角色</li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="col-12">
+        <h2>删除角色</h2>
+    </div>
+</div>
+
+<form id="client-form" asp-controller="Identities" asp-action="RoleDelete" Method="post">
+
+    <!--Hidden -->
+    <input type="hidden" asp-for="Id" />
+
+    <div class="card mt-3">
+        <h5 class="card-header">删除角色</h5>
+        <div class="card-body">
+
+            <!--Input - text -->
+            <div class="form-group row">
+                <label-name asp-for="Name" class="col-sm-3 col-form-label">
+                </label-name>
+                <div class="col-sm-9">
+                    <input type="text" required class="form-control" asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Input - text -->
+            <div class="form-group row">
+                <label-name asp-for="Description" class="col-sm-3 col-form-label">
+                </label-name>
+                <div class="col-sm-9">
+                    <input type="text" required class="form-control" asp-for="Description">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!--Button-->
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                </label>
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-danger">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
