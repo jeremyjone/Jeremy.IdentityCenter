@@ -6,6 +6,10 @@ A complete set of `IdentityServer4` based authentication center.
 
 [中文](./README.md)
 
+## Demo
+
+[Demo](https://idc.xiaopangying.com)
+
 ## Features
 
 It is very suitable for learning to start because it:

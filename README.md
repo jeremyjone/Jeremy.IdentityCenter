@@ -6,6 +6,10 @@
 
 [English](./README_en.md)
 
+## Demo
+
+[Demo](https://idc.xiaopangying.com)
+
 ## 功能
 
 它非常适合学习入手，因为它：
