@@ -6,6 +6,8 @@ namespace Jeremy.IdentityCenter.Business.Common.CollectionServices.Email
 {
     public class EmailOptions
     {
+        private int _port;
+
         [EmailAddress]
         public string Address { get; set; }
 
@@ -17,16 +19,20 @@ namespace Jeremy.IdentityCenter.Business.Common.CollectionServices.Email
 
         public NetworkCredential Credentials { get; set; } = new NetworkCredential();
 
-        public int Port { get; set; } = 25; // default port
+        public int Port
+        {
+            get => _port == default ? EnableSsl ? 465 : 25 : _port;
+            set => _port = value;
+        }
 
         public int Timeout { get; set; } = 100000; // 100 second
 
-        public SmtpDeliveryFormat DeliveryFormat { get; set; } = SmtpDeliveryFormat.International;
+        public SmtpDeliveryFormat DeliveryFormat { get; set; } = SmtpDeliveryFormat.SevenBit;
 
         public SmtpDeliveryMethod DeliveryMethod { get; set; } = SmtpDeliveryMethod.Network;
 
         public string? PickupDirectoryLocation { get; set; }
 
-        public string? TargetName { get; set; }
+        public string? TargetName { get; set; } = "SMTPSVC/";
     }
 }

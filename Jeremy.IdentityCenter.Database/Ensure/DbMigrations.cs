@@ -221,6 +221,7 @@ namespace Jeremy.IdentityCenter.Database.Ensure
                     new Claim(JwtClaimTypes.Name, user.NormalizedUserName),
                     new Claim(JwtClaimTypes.Email, user.Email)
                 };
+                claims.AddRange(u.UserRoles.Select(ur => new Claim(JwtClaimTypes.Role, ur.Role.Name)));
 
                 Console.WriteLine("Adding claims to user...");
                 res = await userManager.AddClaimsAsync(user as TUser, claims);

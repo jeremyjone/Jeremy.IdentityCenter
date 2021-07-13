@@ -1,5 +1,5 @@
 ﻿@model Jeremy.IdentityCenter.Business.Models.Identity.UserProviderViewModel
-@{ ViewBag.Title = "移除用户外部提供程序"; }
+@{ ViewData["Title"] = "移除用户外部提供程序"; }
 
 <form asp-controller="Identities" asp-action="UserProvidersDelete" Method="post">
     <div class="row">

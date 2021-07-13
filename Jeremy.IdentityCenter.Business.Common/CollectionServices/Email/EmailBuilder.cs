@@ -13,7 +13,7 @@ namespace Jeremy.IdentityCenter.Business.Common.CollectionServices.Email
 
         public IServiceCollection Build()
         {
-            return Services.AddSingleton<TEmailSender>();
+            return Services.AddScoped<TEmailSender>();
         }
     }
 }

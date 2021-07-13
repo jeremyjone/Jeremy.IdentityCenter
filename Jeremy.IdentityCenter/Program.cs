@@ -82,6 +82,7 @@ namespace Jeremy.IdentityCenter
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((context, config) =>
                 {
+                    config.SetBasePath(Path.GetDirectoryName(typeof(Program).Assembly.Location));
                     var env = context.HostingEnvironment;
 
                     //config.AddJsonFile("databases.json", true, true);
@@ -109,7 +110,7 @@ namespace Jeremy.IdentityCenter
             var isDevelopment = environment == Environments.Development;
 
             var configurationBuilder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
+                .SetBasePath(Path.GetDirectoryName(typeof(Program).Assembly.Location))
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
                 .AddJsonFile($"appsettings.{environment}.json", optional: true, reloadOnChange: true);
             //.AddJsonFile("serilog.json", optional: true, reloadOnChange: true)

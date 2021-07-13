@@ -1,6 +1,6 @@
 ﻿@using Jeremy.IdentityCenter.Business.Models
 @model Jeremy.IdentityCenter.Business.Models.Identity.UserClaimsViewModel
-@{ ViewBag.Title = "用户声明"; }
+@{ ViewData["Title"] = "用户声明"; }
 
 
 <form id="user-claims-form" asp-controller="Identities" asp-action="UserClaims" Method="post">

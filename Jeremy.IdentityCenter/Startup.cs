@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Net;
+using Jeremy.Tools.Extensions;
 
 namespace Jeremy.IdentityCenter
 {
@@ -69,6 +70,17 @@ namespace Jeremy.IdentityCenter
                     options.Credentials = new NetworkCredential(Configuration["Email:Username"],
                         Configuration["Email:Password"]);
                 });
+
+            //services.AddEmailSender<IdcEmailSender>(options =>
+            //{
+            //    options.Host = Configuration["Email:Host"];
+            //    options.Address = Configuration["Email:Address"];
+            //    options.Credentials = new NetworkCredential(Configuration["Email:Username"],
+            //        Configuration["Email:Password"]);
+            //    options.EnableSsl = Configuration["Email:EnableSsl"].ToBool();
+            //    options.UseDefaultCredentials = Configuration["Email:UseDefaultCredentials"].ToBool();
+            //    options.Port = Configuration["Email:Port"].ToInt32();
+            //});
 
 
             // Ìí¼Ó·þÎñ
